@@ -3,6 +3,7 @@ RUN mkdir /sample
 WORKDIR /sample
 COPY package.json ./
 COPY index.js ./
+COPY install.sh ./
 RUN npm i
 RUN mkdir /app
 CMD ["npm", "run", "start"]
