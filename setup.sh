@@ -13,4 +13,6 @@ docker run --name pp-builder -d -v $ppb:/app pp-builder
 rm -r $ppb/node_modules
 rm $ppb/package-lock.json
 cd $ppb
-docker exec -it pp-builder "cd /app && npm i"
+docker exec -it pp-builder bash install.sh
+docker stop pp-builder
+docker rm pp-builder
