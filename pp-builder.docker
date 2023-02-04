@@ -1,9 +1,15 @@
 FROM node:10.14.0
+
 RUN mkdir /sample
 WORKDIR /sample
 COPY package.json ./
 COPY index.js ./
-COPY install.sh ./
 RUN npm i
+
 RUN mkdir /app
+RUN apt-get update -y
+RUN apt-get install g++ make python3
+RUN apt-get install python3-pip -y
+
+
 CMD ["npm", "run", "start"]

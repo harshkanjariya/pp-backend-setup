@@ -1,8 +1,0 @@
-FROM node:10.14.0
-RUN mkdir /sample
-WORKDIR /sample
-COPY package.json ./
-COPY index.js ./
-RUN npm i
-RUN mkdir /app
-CMD ["npm", "run", "start"]

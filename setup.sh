@@ -10,9 +10,10 @@ docker build -t pp-builder -f pp-builder.docker .
 cd ..
 docker run --name pp-builder -d -v $ppb:/app pp-builder
 
-rm -r $ppb/node_modules
-rm $ppb/package-lock.json
 cd $ppb
-docker exec -it pp-builder bash install.sh
+[ -e node_modules ] && rm -r node_modules
+[ -e package-lock.json ] && rm package-lock.json
+docker exec -it pp-builder bash -c "npm config set user 0"
+docker exec -it pp-builder bash -c "npm --prefix ../app i"
 docker stop pp-builder
 docker rm pp-builder
